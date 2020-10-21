@@ -1,0 +1,65 @@
+common-base组件
+	定时器
+	数据字典
+	权限
+	附件上传
+	
+	
+数据字典服务
+	
+
+用户及权限服务
+
+日志服务
+
+权限
+	orgId 为空，表示通用权限， extends 1 表示本机构 2表示本机构及子机构可继承
+	
+	机构权限查询
+		机构权限			uct_act表	orgId=myorgId
+		继承父机构权限 		uct_act表	loop(orgId=fatherId and extends = 2)
+		继承通用权限 		uct_act表	orgId is null and extends = 2
+		
+		父机构赋予权限		uct_act_org表（赋予机构权限表）orgId=myorgId and and actOrgId is not null
+		通用赋予权限		uct_act_org表（赋予机构权限表）orgId=myorgId and actOrgId is null
+	
+角色
+	roleType为org， extId为空，表示通用角色， extends 1 表示本机构 2表示本机构及子机构可继承
+	
+	机构角色查询
+		机构角色			uct_role表	extId=myorgId
+		继承父机构角色		uct_role表	loop(extId=fatherId and extends = 2)
+		继承通用角色		uct_role表	extId is null and extends = 2
+		
+		父机构赋予角色		uct_role_org表（赋予机构角色表）orgId=myorgId and and roleOrgId is not null
+		通用赋予角色		uct_role_org表（赋予机构角色表）orgId=myorgId and roleOrgId is null
+		
+	部门角色
+		由机构创建，分配权限
+		
+act 		权限由机构创建，属于机构
+act_org		赋予不属于该机构的权限关联表，仅用于查询机构具有哪些权限，查询到的权限赋予机构具有角色中
+
+role		角色由机构或部门创建，属于机构或部门
+role_org	赋予不属于该机构的角色关联表，仅用于查询机构具有哪些角色，查询到的角色赋予某个用户
+
+act_role	角色具有权限关联表，查询角色具有的权限
+
+role_user	用户角色表，查询用户具有角色
+
+最终是人具有角色，人具有权限
+
+
+数据权限	分给角色
+
+角色属于哪个机构，就具有该机构（包括机构下所有部门）的数据权限
+角色属于哪个部门，就具有该部门的数据权限
+
+
+具有该角色的人，查询角色具有的数据权限，从而查询数据
+
+
+
+
+
+		
