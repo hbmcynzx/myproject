@@ -8,6 +8,10 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * Item实体类
+ * @author hbmcynzx
+ */
 @TableName("dict_item")
 @Data
 public class DictItem extends BaseEntity {

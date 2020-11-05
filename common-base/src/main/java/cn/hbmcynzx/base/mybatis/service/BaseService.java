@@ -8,6 +8,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * BaseService
+ * 基础Service
+ * @author hbmcynzx
+ * @param <T>
+ */
 public interface BaseService<T extends BaseEntity> {
     /**
      * 新增方法
@@ -66,6 +72,8 @@ public interface BaseService<T extends BaseEntity> {
     /**
      * 分页查询
      * @param t
+     * @param page
+     * @param rows
      * @return
      */
     default Page<T> selectPage(T t, Integer page, Integer rows) {
@@ -73,7 +81,7 @@ public interface BaseService<T extends BaseEntity> {
     }
 
     /**
-     * 设置mapper
+     * 获取mapper对象
      * @return
      */
     BaseMapper<T> getMapper();

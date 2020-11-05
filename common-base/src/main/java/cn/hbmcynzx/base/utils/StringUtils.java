@@ -3,13 +3,20 @@ package cn.hbmcynzx.base.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author hbmcynzx
+ */
 public class StringUtils {
     private static Pattern humpPattern = Pattern.compile("[A-Z]");
     private static Pattern linePattern = Pattern.compile("_(\\w)");
 
     private StringUtils() {}
 
-    /** 下划线转驼峰 */
+    /**
+     * 下划线转驼峰
+     * @param str
+     * @return
+     */
     public static String lineToHump(String str) {
         str = str.toLowerCase();
         Matcher matcher = linePattern.matcher(str);
@@ -26,7 +33,7 @@ public class StringUtils {
      * @param str
      * @return
      */
-    public static String humpToLine2(String str) {
+    public static String humpToLine(String str) {
         Matcher matcher = humpPattern.matcher(str);
         StringBuffer sb = new StringBuffer();
         while (matcher.find()) {

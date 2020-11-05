@@ -9,9 +9,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * QueryWrapper工具类
+ * @author hbmcynzx
+ */
 public class QueryWrapperUtil {
     private QueryWrapperUtil() {}
 
+    /**
+     * 根据BaseEntity实体，封装查询参数
+     * @param entity
+     * @return QueryWrapper
+     */
     public static QueryWrapper getQueryWrapper(BaseEntity entity) {
         QueryWrapper queryWrapper = new QueryWrapper();
         if(entity == null) {
@@ -19,18 +28,25 @@ public class QueryWrapperUtil {
         }
         queryWrapper.setEntity(entity);
 
+        //获取自定义查询封装对象，遍历赋值
         Map<String, QueryEntity> queryMap = entity.getQueryMap();
         if (queryMap != null && !queryMap.isEmpty()) {
             queryMap.forEach((key, value) -> {
-                insertValue(key, value, queryWrapper);
+                injectValue(key, value, queryWrapper);
             });
         }
         return queryWrapper;
     }
 
-    private static void insertValue(String key, QueryEntity entity, QueryWrapper queryWrapper) {
-        //字段
-        String column = StringUtils.humpToLine2(key);
+    /**
+     * 根据key，entity，将查询条件注入到queryWrapper对象中
+     * @param key 表字段名，列名或属性驼峰命名 user_name或userName
+     * @param entity 查询封装对象，modifier条件修饰符，queryList参数列表
+     * @param queryWrapper
+     */
+    private static void injectValue(String key, QueryEntity entity, QueryWrapper queryWrapper) {
+        //实体表中的字段，转下划线处理
+        String column = StringUtils.humpToLine(key);
         //修饰符
         String modifier = entity.getModifier();
         //参数列表

@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * BaseService实现
+ * @author hbmcynzx
+ * @param <T>
+ */
 @Transactional(readOnly = true, rollbackFor = Exception.class)
 public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 

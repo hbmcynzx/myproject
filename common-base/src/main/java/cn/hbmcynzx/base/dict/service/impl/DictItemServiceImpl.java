@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * ItemService实现
+ * @author hbmcynzx
+ */
 @Service
 @Transactional(readOnly = true, rollbackFor = Exception.class)
 @Slf4j

@@ -8,6 +8,10 @@ import lombok.*;
 
 import java.util.Date;
 
+/**
+ * Cate实体类
+ * @author hbmcynzx
+ */
 @TableName("dict_cate")
 @Data
 public class DictCate extends BaseEntity {

@@ -1,5 +1,9 @@
 package cn.hbmcynzx.base.exception;
 
+/**
+ * 业务异常
+ * @author hbmcynzx
+ */
 public class BusinessException extends RuntimeException {
     public BusinessException() {
     }

@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 数据字典Cate控制层
+ * @author hbmcynzx
+ */
 @RestController
 @RequestMapping("dict/cate")
 public class DictCateController extends BaseController<DictCate> {
