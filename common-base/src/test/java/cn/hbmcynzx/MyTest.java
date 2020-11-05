@@ -2,7 +2,9 @@ package cn.hbmcynzx;
 
 import cn.hbmcynzx.base.dict.entity.DictCate;
 import cn.hbmcynzx.base.dict.service.DictCateService;
+import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.entity.QueryEntity;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -14,8 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class MyTest {
 
     @Autowired
@@ -23,13 +25,15 @@ public class MyTest {
 
     @Test
     public void testInsert() {
-        DictCate dictCate = new DictCate();
-        dictCate.setCateEname("test2");
-        dictCate.setCateCname("测试2");
-        dictCate.setCateRemark("测试2");
-        dictCate.setCreateUser("hbmcynzx");
-        dictCate.setCreateTime(new Date());
-        dictCateService.insert(dictCate);
+        for(int i = 0; i < 10; i++) {
+            DictCate dictCate = new DictCate();
+            dictCate.setCateEname("test" + i);
+            dictCate.setCateCname("测试" + i);
+            dictCate.setCateRemark("测试" + i);
+            dictCate.setCreateUser("hbmcynzx");
+            dictCate.setCreateTime(new Date());
+            dictCateService.insert(dictCate);
+        }
     }
 
     @Test
@@ -71,8 +75,8 @@ public class MyTest {
 
     @Test
     public void testSelectPage() {
-        Page<DictCate> page = dictCateService.selectPage(null, 1, 2);
-        List<DictCate> dictCates = page.getRecords();
+        PageList<DictCate> pageList = dictCateService.selectPage(null, 1, 2);
+        List<DictCate> dictCates = pageList.getList();
         dictCates.forEach(System.out::println);
     }
 
@@ -127,6 +131,16 @@ public class MyTest {
 
         List list = dictCateService.selectList(cate);
         list.stream().forEach(System.out::println);
+    }
+
+    @Test
+    public void test5() {
+        String a = "{\"cateEname\":{\"modifier\":\"%\",\"query\":[\"test1\"]},\"cateCname\":{\"modifier\":\"%\",\"query\":[\"test1\"]}}";
+        Map<String, QueryEntity> map = JSONUtil.toBean(a, Map.class);
+        map.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
+        });
     }
 
 }

@@ -2,6 +2,7 @@ package cn.hbmcynzx.base.mybatis.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,5 +19,10 @@ public class BaseEntity implements Serializable {
      * 统一查询封装注入对象
      */
     @TableField(exist = false)
+    @JsonIgnore
     protected Map<String, QueryEntity> queryMap;
+
+    @TableField(exist = false)
+    @JsonIgnore
+    protected String queryMapString;
 }

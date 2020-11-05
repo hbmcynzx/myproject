@@ -16,6 +16,10 @@
         <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
         <spring.cloud.alibaba.version>2.2.3.RELEASE</spring.cloud.alibaba.version>
         <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
+        <cn.hutool.version>5.4.7</cn.hutool.version>
+        <com.baomidou.version>3.4.0</com.baomidou.version>
+        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <com.alibaba.druid.version>1.1.10</com.alibaba.druid.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -46,20 +50,26 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.4.0</version>
+                <version>${com.baomidou.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
+                <version>${org.projectlombok.version}</version>
                 <scope>import</scope>
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.10</version>
+                <version>${com.alibaba.druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${cn.hutool.version}</version>
             </dependency>
 
         </dependencies>

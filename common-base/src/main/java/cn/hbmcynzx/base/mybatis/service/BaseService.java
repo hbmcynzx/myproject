@@ -2,6 +2,7 @@ package cn.hbmcynzx.base.mybatis.service;
 
 import cn.hbmcynzx.base.exception.BusinessException;
 import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
+import cn.hbmcynzx.base.mybatis.entity.PageList;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -76,7 +77,7 @@ public interface BaseService<T extends BaseEntity> {
      * @param rows
      * @return
      */
-    default Page<T> selectPage(T t, Integer page, Integer rows) {
+    default PageList<T> selectPage(T t, Integer page, Integer rows) {
         throw new BusinessException("分页查询方法未重写");
     }
 

@@ -1,6 +1,7 @@
 package cn.hbmcynzx.base.mybatis.service.impl;
 
 import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
+import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.service.BaseService;
 import cn.hbmcynzx.base.mybatis.utils.QueryWrapperUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -19,19 +20,19 @@ import java.util.List;
 public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insert(T t) {
         return getMapper().insert(t);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int update(T t) {
         return getMapper().updateById(t);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteById(Serializable id) {
         return getMapper().deleteById(id);
     }
@@ -54,10 +55,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
     }
 
     @Override
-    public Page<T> selectPage(T t, Integer page, Integer rows) {
+    public PageList<T> selectPage(T t, Integer page, Integer rows) {
         QueryWrapper<T> queryWrapper = QueryWrapperUtil.getQueryWrapper(t);
         Page<T> pageInfo = new Page<>(page, rows);
-        return getMapper().selectPage(pageInfo, queryWrapper);
+        pageInfo = getMapper().selectPage(pageInfo, queryWrapper);
+        PageList<T> pageList = new PageList<>(pageInfo.getTotal(), pageInfo.getRecords());
+        return pageList;
     }
 
 }
