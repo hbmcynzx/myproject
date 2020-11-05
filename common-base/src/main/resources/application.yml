@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql.hbmcynzx.cn:3306/myproject?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=true
+    url: jdbc:mysql://mysql.hbmcynzx.cn:3306/myproject?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=true
     username: hbmcynzx
     password: 857918356
     type: com.alibaba.druid.pool.DruidDataSource
@@ -13,3 +13,7 @@ spring:
       min-idle: 5
       max-active: 20
       max-wait: 60000
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

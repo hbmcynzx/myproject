@@ -1,5 +1,6 @@
-package cn.hbmcynzx.dict.entity;
+package cn.hbmcynzx.base.dict.entity;
 
+import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -9,7 +10,7 @@ import java.util.Date;
 
 @TableName("dict_item")
 @Data
-public class DictItem {
+public class DictItem extends BaseEntity {
     @TableId(type = IdType.ASSIGN_UUID)
     private String itemId;
     private String cateEname;

@@ -1,46 +1,82 @@
 package cn.hbmcynzx;
 
-import cn.hbmcynzx.dict.entity.DictCate;
-import cn.hbmcynzx.dict.mapper.DictCateMapper;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import cn.hbmcynzx.base.dict.entity.DictCate;
+import cn.hbmcynzx.base.dict.service.DictCateService;
+import cn.hbmcynzx.base.mybatis.entity.QueryEntity;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MyTest {
 
     @Autowired
-    private DictCateMapper dictCateMapper;
+    private DictCateService dictCateService;
 
     @Test
-    public void test1() {
+    public void testInsert() {
         DictCate dictCate = new DictCate();
         dictCate.setCateEname("test2");
         dictCate.setCateCname("测试2");
         dictCate.setCateRemark("测试2");
         dictCate.setCreateUser("hbmcynzx");
         dictCate.setCreateTime(new Date());
-        dictCateMapper.insert(dictCate);
-
-
+        dictCateService.insert(dictCate);
     }
 
     @Test
-    public void test2() {
-        List<DictCate> dictCates = dictCateMapper.mySelectAll();
-        dictCates.forEach(cate -> System.out.println(cate));
+    public void testUpdate() {
+        DictCate dictCate = new DictCate();
+        dictCate.setCateId("d18c7feb7fc50eaa199121cdd203a6e4");
+        dictCate.setCateEname("test3");
+        dictCate.setCateCname("测试3");
+        dictCate.setCateRemark("测试3");
+        dictCateService.update(dictCate);
     }
+
+    @Test
+    public void testDelete() {
+        dictCateService.deleteById("f5ada9f1e0860c45f12326f39a7fa533");
+    }
+
+    @Test
+    public void testSelectById() {
+        DictCate dictCate = dictCateService.selectById("d18c7feb7fc50eaa199121cdd203a6e4");
+        System.out.println(dictCate);
+    }
+
+    @Test
+    public void testSelectOne() {
+        DictCate dictCate = new DictCate();
+        dictCate.setCateId("d18c7feb7fc50eaa199121cdd203a6e4");
+        dictCate = dictCateService.selectOne(dictCate);
+        System.out.println(dictCate);
+    }
+
+    @Test
+    public void testSelectAll() {
+        DictCate dictCate = new DictCate();
+        dictCate.setCateEname("test2");
+        List<DictCate> dictCates = dictCateService.selectList(dictCate);
+        dictCates.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSelectPage() {
+        Page<DictCate> page = dictCateService.selectPage(null, 1, 2);
+        List<DictCate> dictCates = page.getRecords();
+        dictCates.forEach(System.out::println);
+    }
+
+
 
     @Test
     public void test3() {
@@ -78,4 +114,19 @@ public class MyTest {
         System.out.println(query3.getCustomSqlSegment());
         System.out.println(query3.getParamNameValuePairs());
     }
+
+    @Test
+    public void test4() {
+        DictCate cate = new DictCate();
+        Map<String, QueryEntity> queryMap = new HashMap<>();
+        QueryEntity entity = new QueryEntity();
+        entity.setModifier("desc");
+        entity.setQuery(Arrays.asList("test"));
+        queryMap.put("createTime", entity);
+        cate.setQueryMap(queryMap);
+
+        List list = dictCateService.selectList(cate);
+        list.stream().forEach(System.out::println);
+    }
+
 }
