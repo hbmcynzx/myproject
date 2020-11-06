@@ -50,7 +50,7 @@ public class QueryWrapperUtil {
         //修饰符
         String modifier = entity.getModifier();
         //参数列表
-        List<String> queryList = entity.getQuery();
+        List<Object> queryList = entity.getQuery();
 
         ModifierEnum modifierEnum = ModifierEnum.from(modifier);
         if(modifierEnum == null) {

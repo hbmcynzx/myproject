@@ -19,5 +19,5 @@ public class QueryEntity implements Serializable {
     /**
      * 参数集合
      */
-    private List<String> query;
+    private List<Object> query;
 }

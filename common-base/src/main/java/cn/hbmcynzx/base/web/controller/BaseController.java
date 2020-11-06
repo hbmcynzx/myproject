@@ -4,9 +4,6 @@ import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
 import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.service.BaseService;
 import cn.hbmcynzx.base.utils.ResultMsg;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -18,16 +15,6 @@ import java.util.List;
  * @param <T>
  */
 public abstract class BaseController<T extends BaseEntity> {
-
-    @InitBinder("baseEntity")
-    public void init(WebDataBinder binder) {
-        Object target = binder.getTarget();
-        if(target != null && target instanceof BaseEntity) {
-            System.out.println(binder);
-            ConversionService conversionService = binder.getConversionService();
-            System.out.println(conversionService);
-        }
-    }
 
 
     /**
@@ -128,7 +115,7 @@ public abstract class BaseController<T extends BaseEntity> {
      * @return
      */
     @GetMapping("selectPage")
-    public Object selectPage(@ModelAttribute("baseEntity") T t, @RequestParam Integer page,@RequestParam Integer rows) {
+    public Object selectPage(T t, @RequestParam Integer page,@RequestParam Integer rows) {
         PageList<T> pageList = getService().selectPage(t, page, rows);
         if(pageList != null) {
             return ResultMsg.success("查询成功", pageList);
