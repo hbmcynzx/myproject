@@ -32,3 +32,14 @@ create table dict_item(
 	update_time datetime comment '修改时间',
 	del_status varchar(2) default 'F' comment '删除状态'
 );
+--定时任务表
+create table sys_task(
+    task_id varchar(64) primary key comment '主键',
+    cron varchar(50) comment 'cron表达式',
+    class_name varchar(100) comment '类全限定名称',
+    auto_start tinyint(1) comment '任务是否自启动',
+    description varchar(100) comment '描述',
+    task_type varchar(10) comment '任务类型',
+    `period` int comment '周期',
+    time_unit varchar(20) comment '周期单位'
+);

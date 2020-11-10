@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @MapperScan({"cn.hbmcynzx.base.dict.mapper"})
-public class DictConfig {
+public class DictMapperConfig {
 }

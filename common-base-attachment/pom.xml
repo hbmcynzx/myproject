@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <description>数据字典模块</description>
+    <description>文件上传下载及附件库</description>
 
-    <artifactId>common-base-dict</artifactId>
+    <artifactId>common-base-attachment</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -30,4 +30,5 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>
