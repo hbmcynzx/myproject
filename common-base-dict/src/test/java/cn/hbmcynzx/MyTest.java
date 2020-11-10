@@ -4,15 +4,13 @@ import cn.hbmcynzx.base.dict.entity.DictCate;
 import cn.hbmcynzx.base.dict.service.DictCateService;
 import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.entity.QueryEntity;
+import cn.hbmcynzx.base.mybatis.utils.QueryWrapperUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
@@ -141,6 +139,19 @@ public class MyTest {
             System.out.println(key);
             System.out.println(value);
         });
+    }
+
+    @Test
+    public void test6() {
+        //DictCate cate = new DictCate();
+        //cate.setCateEname("test");
+        QueryWrapper queryWrapper = QueryWrapperUtil.getQueryWrapper(null);
+        queryWrapper.select("p.id", "p.cate_ename");
+        queryWrapper.eq("p.cate_ename", "test");
+
+        System.out.println(queryWrapper.getSqlSelect());
+        System.out.println(queryWrapper.getCustomSqlSegment());
+        System.out.println(queryWrapper.getParamNameValuePairs());
     }
 
 }
