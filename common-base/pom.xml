@@ -9,10 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>通用基础模块</description>
+    <modules>
+        <module>common-base-api</module>
+        <module>common-base-dict</module>
+        <module>common-base-task</module>
+        <module>common-base-attachment</module>
+        <module>common-base-authority</module>
+    </modules>
 
     <artifactId>common-base</artifactId>
-    <packaging>jar</packaging>
-
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -53,7 +59,7 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 
 </project>

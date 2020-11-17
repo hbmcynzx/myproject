@@ -10,10 +10,6 @@
     <modules>
         <module>common-base</module>
         <module>spring-run-project</module>
-        <module>common-base-dict</module>
-        <module>common-base-authority</module>
-        <module>common-base-task</module>
-        <module>common-base-attachment</module>
     </modules>
     <packaging>pom</packaging>
 
