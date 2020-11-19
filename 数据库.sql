@@ -43,3 +43,64 @@ create table sys_task(
     `period` int comment '周期',
     time_unit varchar(20) comment '周期单位'
 );
+
+--权限表
+create table sys_act(
+    act_id varchar(64) primary key comment '主键',
+    act_ename varchar(50) comment '权限标识',
+    act_cname varchar(50) comment '权限名称',
+    full_ename varchar(200) comment '',
+    full_cname varchar(200) comment '',
+    tree_level int default 1 comment '级别',
+    father_id varchar(64) comment '上级id',
+    sub_count int default 0 comment '子节点数',
+    status tinyint(1) default 1 comment '是否启用',
+    remark varchar(50) comment '描述',
+    org_id varchar(64) comment '所属机构，为空表示通用权限',
+    extends int default 1 comment '继承性质',
+    create_user varchar(50) comment '创建用户',
+    create_time datetime comment '创建时间',
+    update_user varchar(50) comment '修改用户',
+    update_time datetime comment '修改时间',
+    del_status varchar(2) default 'F' comment '删除状态'
+);
+-- 权限机构表，机构有哪些额外权限
+create table sys_act_org(
+    id varchar(64) primary key comment '主键',
+    org_id varchar(64) comment '机构主键',
+    act_id varchar(64) comment '权限主键'
+);
+
+create table sys_role(
+    role_id varchar(64) primary key,
+    roll_ename varchar(50) comment '角色标识',
+    roll_cname varchar(50) comment '角色名称',
+    status tinyint(1) default 1 comment '是否启用',
+    remark varchar(50) comment '描述',
+    role_type varchar(10) comment '角色类型',
+    ext_id varchar(64) comment '外键',
+    extends int default 1 comment '继承性质',
+    create_user varchar(50) comment '创建用户',
+    create_time datetime comment '创建时间',
+    update_user varchar(50) comment '修改用户',
+    update_time datetime comment '修改时间',
+    del_status varchar(2) default 'F' comment '删除状态'
+);
+
+create table sys_role_org(
+    id varchar(64) primary key comment '主键',
+    role_id varchar(64) comment '角色主键',
+    org_id varchar(64) comment '机构主键'
+);
+
+create table sys_act_role(
+    id varchar(64) primary key,
+    act_id varchar(64) comment '权限id',
+    role_id varchar(64) comment '角色id'
+);
+
+create table sys_role_user(
+    id varchar(64) primary key,
+    role_id varchar(64) comment '角色id',
+    user_id varchar(64) comment '用户id'
+);
