@@ -5,7 +5,6 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.support.PeriodicTrigger;
 
-import java.util.Date;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -26,20 +25,18 @@ public abstract class DynamicTask {
 
     public void setCron(String cron) {
         stopTask();
-        future = taskScheduler.schedule(setTask(), (triggerContext) -> {
+        future = taskScheduler.schedule(setTask(), triggerContext -> {
             CronTrigger trigger = new CronTrigger(cron);
-            Date nextExecDate = trigger.nextExecutionTime(triggerContext);
-            return nextExecDate;
+            return trigger.nextExecutionTime(triggerContext);
         });
         start = true;
     }
 
     public void setFixedDelay(long period, TimeUnit timeUnit) {
         stopTask();
-        future = taskScheduler.schedule(setTask(), (triggerContext) -> {
+        future = taskScheduler.schedule(setTask(), triggerContext -> {
             PeriodicTrigger trigger = new PeriodicTrigger(period, timeUnit);
-            Date nextExecDate = trigger.nextExecutionTime(triggerContext);
-            return nextExecDate;
+            return trigger.nextExecutionTime(triggerContext);
         });
         start = true;
     }

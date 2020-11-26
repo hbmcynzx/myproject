@@ -96,7 +96,8 @@ public class TaskUtils {
         if(tasks != null && !tasks.isEmpty()) {
             tasks.forEach(task -> {
                 //任务自启动
-                if (task.getAutoStart()) {
+                Boolean b = true;
+                if (b.equals(task.getAutoStart())) {
                     startTask(task);
                 }
             });
@@ -145,9 +146,9 @@ public class TaskUtils {
      * @return
      */
     public List<TaskEntity> reload() {
-        List<TaskEntity> taskList = getTaskService().selectList(null);
-        if(taskList != null && !taskList.isEmpty() && !taskMap.isEmpty()) {
-            taskList.forEach(task -> {
+        List<TaskEntity> list = getTaskService().selectList(null);
+        if(list != null && !list.isEmpty() && !taskMap.isEmpty()) {
+            list.forEach(task -> {
                 String taskId = task.getTaskId();
                 DynamicTask dynamicTask = taskMap.get(taskId);
                 if(dynamicTask != null) {
@@ -155,8 +156,8 @@ public class TaskUtils {
                 }
             });
         }
-        this.taskList = taskList;
-        return this.taskList;
+        taskList = list;
+        return taskList;
     }
 
     public void stopTasks() {

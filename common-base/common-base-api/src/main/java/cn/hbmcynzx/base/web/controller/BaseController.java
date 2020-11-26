@@ -15,13 +15,13 @@ import java.util.List;
  * @author hbmcynzx
  * @param <T>
  */
-public abstract class BaseController<T extends BaseEntity, Service extends BaseService<T>> {
+public abstract class BaseController<T extends BaseEntity, S extends BaseService<T>> {
 
 
     @Autowired
-    protected Service baseService;
+    protected S baseService;
 
-    protected Service getService() {
+    protected S getService() {
         return baseService;
     }
 

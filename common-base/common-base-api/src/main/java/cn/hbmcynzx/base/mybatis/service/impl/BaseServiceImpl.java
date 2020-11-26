@@ -68,8 +68,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, M extends BaseMapper
         QueryWrapper<T> queryWrapper = QueryWrapperUtil.getQueryWrapper(t);
         Page<T> pageInfo = new Page<>(page, rows);
         pageInfo = getMapper().selectPage(pageInfo, queryWrapper);
-        PageList<T> pageList = new PageList<>(pageInfo.getTotal(), pageInfo.getRecords());
-        return pageList;
+        return new PageList<>(pageInfo.getTotal(), pageInfo.getRecords());
     }
 
 }

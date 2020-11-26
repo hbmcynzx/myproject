@@ -31,9 +31,7 @@ public class QueryWrapperUtil {
         //获取自定义查询封装对象，遍历赋值
         Map<String, QueryEntity> queryMap = entity.getQueryMap();
         if (queryMap != null && !queryMap.isEmpty()) {
-            queryMap.forEach((key, value) -> {
-                injectValue(key, value, queryWrapper);
-            });
+            queryMap.forEach((key, value) -> injectValue(key, value, queryWrapper));
         }
         return queryWrapper;
     }

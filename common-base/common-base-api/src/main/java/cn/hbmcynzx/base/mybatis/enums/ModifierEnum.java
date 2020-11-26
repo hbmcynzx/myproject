@@ -95,7 +95,7 @@ public enum ModifierEnum {
      * @param key
      * @return
      */
-    public final boolean equals(String key) {
+    public final boolean myEquals(String key) {
         return this.modifiers.contains(key);
     }
 
@@ -107,7 +107,7 @@ public enum ModifierEnum {
     public static ModifierEnum from(String key) {
         ModifierEnum[] values = ModifierEnum.values();
         for (ModifierEnum value : values) {
-            if(value.equals(key)) {
+            if(value.myEquals(key)) {
                 return value;
             }
         }

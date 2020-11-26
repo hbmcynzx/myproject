@@ -1,6 +1,5 @@
 package cn.hbmcynzx.base.utils;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.env.Environment;
@@ -12,7 +11,7 @@ public class ApplicationContextUtils implements ApplicationContextAware {
     private static Environment environment;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         context = applicationContext;
         environment = applicationContext.getEnvironment();
     }
