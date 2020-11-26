@@ -1,18 +1,15 @@
 package cn.hbmcynzx.base.task.controller;
 
-import cn.hbmcynzx.base.mybatis.service.BaseService;
 import cn.hbmcynzx.base.task.entity.TaskEntity;
 import cn.hbmcynzx.base.task.service.TaskService;
 import cn.hbmcynzx.base.task.utils.TaskUtils;
 import cn.hbmcynzx.base.utils.ResultMsg;
 import cn.hbmcynzx.base.web.controller.BaseController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 定时任务控制层
@@ -20,14 +17,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("task")
-public class TaskController extends BaseController<TaskEntity> {
-
-    @Autowired
-    private TaskService taskService;
-    @Override
-    public BaseService<TaskEntity> getService() {
-        return taskService;
-    }
+public class TaskController extends BaseController<TaskEntity, TaskService> {
 
     /**
      * 开启定时任务

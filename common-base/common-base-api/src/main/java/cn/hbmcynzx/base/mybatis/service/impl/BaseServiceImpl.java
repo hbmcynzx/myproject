@@ -5,7 +5,9 @@ import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.service.BaseService;
 import cn.hbmcynzx.base.mybatis.utils.QueryWrapperUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -14,10 +16,17 @@ import java.util.List;
 /**
  * BaseService实现
  * @author hbmcynzx
- * @param <T>
  */
 @Transactional(readOnly = true, rollbackFor = Exception.class)
-public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseEntity, M extends BaseMapper<T>> implements BaseService<T> {
+
+    @Autowired
+    protected M baseMapper;
+
+    @Override
+    public BaseMapper<T> getMapper() {
+        return baseMapper;
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)

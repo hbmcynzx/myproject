@@ -4,7 +4,6 @@ import cn.hbmcynzx.base.exception.BusinessException;
 import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
 import cn.hbmcynzx.base.mybatis.entity.PageList;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.io.Serializable;
 import java.util.List;

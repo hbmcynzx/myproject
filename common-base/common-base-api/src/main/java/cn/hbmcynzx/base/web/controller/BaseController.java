@@ -4,6 +4,7 @@ import cn.hbmcynzx.base.mybatis.entity.BaseEntity;
 import cn.hbmcynzx.base.mybatis.entity.PageList;
 import cn.hbmcynzx.base.mybatis.service.BaseService;
 import cn.hbmcynzx.base.utils.ResultMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -14,14 +15,15 @@ import java.util.List;
  * @author hbmcynzx
  * @param <T>
  */
-public abstract class BaseController<T extends BaseEntity> {
+public abstract class BaseController<T extends BaseEntity, Service extends BaseService<T>> {
 
 
-    /**
-     * 获取service
-     * @return
-     */
-    public abstract BaseService<T> getService();
+    @Autowired
+    protected Service baseService;
+
+    protected Service getService() {
+        return baseService;
+    }
 
     /**
      * 新增接口
